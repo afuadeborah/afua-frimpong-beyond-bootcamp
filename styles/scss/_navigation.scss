@@ -2,6 +2,7 @@
 nav,
 .nav-menu {
     display: flex;
+    align-items: center;
 }
 
 nav {
@@ -9,12 +10,9 @@ nav {
     justify-content: space-between;
     padding: 1em;
 
-    .nav-menu {
-        align-items: center;
+    .nav-menu li:first-of-type {
 
-        li:first-of-type {
-            margin-right: 20px;
-        }
+        margin-right: 20px;
     }
 
     .logo {
@@ -24,5 +22,8 @@ nav {
 
     span {
         @include font-size(27);
+        cursor: pointer;
+
+        
     }
 }
