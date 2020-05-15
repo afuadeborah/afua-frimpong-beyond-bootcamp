@@ -165,6 +165,68 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box;
 }
 
+nav,
+.nav-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+nav {
+  height: 10vh;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1em;
+}
+
+nav .nav-menu {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav .nav-menu li:first-of-type {
+  margin-right: 20px;
+}
+
+nav .logo {
+  font-size: 3rem;
+  letter-spacing: 4px;
+}
+
+nav span {
+  font-size: 2.7rem;
+}
+
+.parallax {
+  background-image: url(../assets/eyebrushes.jpg);
+  height: 70vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax .info {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.parallax .info button {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -209,4 +271,14 @@ a {
   max-width: 1280px;
   width: 90%;
   margin: 0 auto;
+}
+
+h1,
+nav p {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+}
+
+.spacer {
+  height: 10vh;
 }

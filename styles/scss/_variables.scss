@@ -1,6 +1,6 @@
 // Font
 $body-font: 'Montserrat', sans-serif;
-$header-font: 'Sen', sans-serif;
+$header-font: 'Poppins', sans-serif;
 
 @mixin font-size($size){
     font-size: ($size/10) * 1rem;

@@ -1,1 +1,28 @@
 // Navigation
+nav,
+.nav-menu {
+    display: flex;
+}
+
+nav {
+    height: 10vh;
+    justify-content: space-between;
+    padding: 1em;
+
+    .nav-menu {
+        align-items: center;
+
+        li:first-of-type {
+            margin-right: 20px;
+        }
+    }
+
+    .logo {
+        @include font-size(30);
+        letter-spacing: 4px;
+    }
+
+    span {
+        @include font-size(27);
+    }
+}

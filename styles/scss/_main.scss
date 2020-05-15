@@ -1,0 +1,28 @@
+// Hero and Content before Store
+.parallax {
+    // Image for effect
+    background-image: url(../assets/eyebrushes.jpg);
+
+    height: 70vh;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+    .info {
+        position: absolute;
+        right: 10%;
+        top: 50%;
+        text-align: right;
+
+        display: flex;
+        flex-direction: column;
+
+
+        button {
+            align-self: flex-end;
+        }
+    }
+}
