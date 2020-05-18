@@ -38,11 +38,24 @@ makeupPromise()
 
 const getMakeup = (data) => {
 
-    data.forEach((item) => {
-
-        const makeup = item.name
-        console.log(makeup)
+    let makeupArr = []
+    
+    data.map((item) => {
+        
+        const makeup = {
+            "name": item.name,
+            "price": item.price,
+            "brand": item.brand
+        }
+        
+        
+        
+        
+        return makeupArr.push(makeup)
+        
     })
+    
+    console.log(makeupArr)
 }
 
 
