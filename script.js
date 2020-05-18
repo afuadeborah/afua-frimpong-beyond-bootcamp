@@ -10,12 +10,14 @@
         .then( (res) => {
             return res.json()
             // Convert returned information into json
+            
         })
 
         .then ((data) => {
             // Function manipulating data gets called here
             
             getMakeup(data)
+            console.log(data)
 
         })
 
@@ -76,6 +78,7 @@
                     </h3>
                     <p class="product-price">${item.price}</p>
                     <p class="product-brand">${item.brand}</p>
+                    <button class="add-to-cart">Add to cart</button>
                 </div>
             `
             // Append store products to page

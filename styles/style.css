@@ -232,6 +232,7 @@ nav span {
   text-transform: uppercase;
   letter-spacing: 1.6px;
   padding: 0.8em;
+  margin-top: 1em;
 }
 
 .promo-background {
@@ -291,6 +292,15 @@ nav span {
   letter-spacing: .16em;
   line-height: 21px;
   font-weight: 500;
+}
+
+.store-container li .add-to-cart {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: "Poppins";
+  font-weight: bold;
+  background: #FFF;
+  border-bottom: 1px solid #000;
 }
 
 html {
