@@ -1,106 +1,119 @@
 // Write out all your steps as you plan out this page bitch let's goo
+// Remember to remove console.logs at the end
 
 
 // API Call: Get products to display from Makeup API
-const makeupPromise = () => {
+    const makeupPromise = () => {
 
-    fetch("https://makeup-api.herokuapp.com/api/v1/products.json?product_type=eyeliner&product_category=liquid&price_greater_than=5&price_less_than=20")
+        fetch("https://makeup-api.herokuapp.com/api/v1/products.json?product_type=eyeliner&product_category=liquid&price_greater_than=5&price_less_than=20")
 
-    .then( (res) => {
-        return res.json()
-        // Convert returned information into json
-    })
+        .then( (res) => {
+            return res.json()
+            // Convert returned information into json
+        })
 
-    .then ((data) => {
-        // Function manipulating data gets called here
-        
-        getMakeup(data)
+        .then ((data) => {
+            // Function manipulating data gets called here
+            
+            getMakeup(data)
 
-    })
+        })
 
-    // Error handling
-    .catch( (err) => {
-        console.log("No data to display")
-    })
-}
+        // Error handling
+        .catch( (err) => {
+            console.log("No data to display")
+        })
+    }
 
     makeupPromise()
 
 
 
-
-// Pull necessary information from API
-const getMakeup = (data) => {
-   
-    let makeupArr = []
+// Pull off necessary information from API
+    const getMakeup = (data) => {
     
-    data.map((item) => {
+        let makeupArr = []
         
-        const makeup = {
-            "name": item.name,
-            "price": item.price,
-            "brand": item.brand,
-            "imgUrl": item.image_link,
+        data.map((item) => {
 
-        }
+            // Not all the prices have 2 decimal points so we 
+            let decimalPrice = parseInt(item.price).toFixed(2)
+            
+            const makeup = {
+                "name": item.name,
+                "price": decimalPrice,
+                "brand": item.brand,
+                "imgUrl": item.image_link,
+            }
+
+            
+            return makeupArr.push(makeup)
+            
+        })
         
+        console.log(makeupArr)
         
-        return makeupArr.push(makeup)
+
+        makeupArr.forEach((item) => {
+
+            // Use let to reassign the value of the text and content 
+            const store = document.getElementById("store-container")
+            let product = document.createElement('li')
+            
+
+            // Build HTML
+            product.innerHTML = `
+
+                <div class="image-container">
+
+                    <img src="${item.imgUrl}" alt="${item.name}">
+
+                </div>
+
+                <div class="product-text">
+                    <h3>
+                        <a>${item.name}</a>
+                    </h3>
+                    <p class="product-price">${item.price}</p>
+                    <p class="product-brand">${item.brand}</p>
+                </div>
+            `
+            // Append store products to page
+            store.appendChild(product)
+            
+        })
         
+    }
+
+// Smooth scroll 
+    scrollTo = (element) => {
+        window.scroll({
+        behavior: 'smooth',
+        left: 0,
+        top: element.offsetTop
+        });
+        
+    }
+
+
+
+// Smooth scroll to store section
+    const shopNow = document.getElementById("shop-btn")
+    const shopLi = document.getElementById("shop")
+
+    shopNow.addEventListener("click", (e) => {
+        e.preventDefault()
+        scrollTo(document.getElementById("store"))
     })
-    
-    console.log(makeupArr)
 
-    makeupArr.forEach((item) => {
+    shopLi.addEventListener("click", () => {
 
-        // Use let to reassign the value of the text and content 
-        const store = document.getElementById("store-container")
-        let product = document.createElement('li')
-
-        // Build HTML
-        product.innerHTML = `
-
-            <div class="image-container">
-
-                <img src="${item.imgUrl}" alt="${item.name}">
-
-            </div>
-
-            <div class="product-text">
-                <h3>
-                    <a>${item.name}</a>
-                </h3>
-                <p class="product-price">${item.price}</p>
-                <p class="product-brand">${item.brand}</p>
-            </div>
-        `
-
-        store.appendChild(product)
-        
-
+        scrollTo(document.getElementById("store"))
     })
-    
-}
 
 
 
 
 
-
-
-// Create scroll event for button in hero
 // Create hover event for cart
 
-// <div class="image-container">
-
-// <img src="${item.image_link}" alt="${item.name}">
-
-// </div>
-
-// <div class="product-text">
-// <h3>
-//     <a href="${item.name}"></a>
-// </h3>
-// <p class="product-price">${item.price}</p>
-// <p class="product-brand">${item.brand}</p>
-// </div>

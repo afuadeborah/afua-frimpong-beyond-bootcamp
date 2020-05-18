@@ -23,6 +23,22 @@
 
         button {
             align-self: flex-end;
+            background: $text;
+            color: $white;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            padding: 0.8em;
         }
     }
+}
+
+
+.promo-background {
+    background-image: url(/assets/pink-compact-2.jpg);
+    height: 60vh;
+
+    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

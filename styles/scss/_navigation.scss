@@ -11,8 +11,11 @@ nav {
     padding: 1em;
 
     .nav-menu li:first-of-type {
-
         margin-right: 20px;
+    }
+
+    .nav-menu li:hover {
+        border-bottom: 1px solid $text;
     }
 
     .logo {
