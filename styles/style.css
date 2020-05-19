@@ -266,6 +266,15 @@ nav span {
   -webkit-box-shadow: 5px 5px 5px 0px #DBD7DB;
           box-shadow: 5px 5px 5px 0px #DBD7DB;
   max-width: 400px;
+  -webkit-transition: -webkit-transform .4s;
+  transition: -webkit-transform .4s;
+  transition: transform .4s;
+  transition: transform .4s, -webkit-transform .4s;
+}
+
+.store-container li .image-container:hover {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
 }
 
 .store-container li .product-text {
@@ -300,7 +309,18 @@ nav span {
   font-family: "Poppins";
   font-weight: bold;
   background: #FFF;
+  margin-top: 0.5em;
+  border-bottom: 1px solid transparent;
+  -webkit-transition: border-bottom 1s;
+  transition: border-bottom 1s;
+}
+
+.store-container li .add-to-cart:hover {
   border-bottom: 1px solid #000;
+}
+
+.store-container li input[type=radio] {
+  opacity: 0;
 }
 
 html {

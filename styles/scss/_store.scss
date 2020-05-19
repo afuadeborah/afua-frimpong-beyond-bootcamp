@@ -14,7 +14,11 @@
         .image-container {
             box-shadow: 5px 5px 5px 0px #DBD7DB;
             max-width: 400px;
+            transition: transform .4s;
 
+            &:hover {
+                transform: scale(1.5);
+            }
             
         }
 
@@ -52,12 +56,19 @@
             font-family: "Poppins";
             font-weight: bold;
             background: $white;
-            border-bottom: 1px solid $text;
-        
-
+            margin-top: 0.5em;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 1s;
+            
+            
             &:hover {
+                border-bottom: 1px solid $text;
 
             }
+        }
+
+        input[type=radio] {
+            opacity: 0;
         }
         
 

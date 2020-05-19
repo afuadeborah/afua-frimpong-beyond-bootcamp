@@ -3,7 +3,7 @@
 
 
 // API Call: Get products to display from Makeup API
-    const makeupPromise = () => {
+    const makeupApi = () => {
 
         fetch("https://makeup-api.herokuapp.com/api/v1/products.json?product_type=eyeliner&product_category=liquid&price_greater_than=5&price_less_than=20")
 
@@ -27,7 +27,7 @@
         })
     }
 
-    makeupPromise()
+    makeupApi()
 
 
 
@@ -46,6 +46,7 @@
                 "price": decimalPrice,
                 "brand": item.brand,
                 "imgUrl": item.image_link,
+                "id": item.id
             }
 
             
@@ -76,9 +77,14 @@
                     <h3>
                         <a>${item.name}</a>
                     </h3>
+
                     <p class="product-price">${item.price}</p>
+
                     <p class="product-brand">${item.brand}</p>
-                    <button class="add-to-cart">Add to cart</button>
+
+                    <label for="${item.id}" class="add-to-cart" tabindex="0">Add to cart</label>
+
+                    <input type="checkbox" id="${item.id}" class="checkbox"></input>
                 </div>
             `
             // Append store products to page
@@ -92,12 +98,12 @@
     scrollTo = (element) => {
         window.scroll({
         behavior: 'smooth',
+        duration: 'slow',
         left: 0,
         top: element.offsetTop
         });
         
     }
-
 
 
 // Smooth scroll to store section
@@ -115,8 +121,10 @@
     })
 
 
+// Since the products are added dynamically we need to use event delegation to target those elements
+// Maybe move a div over to HTML
 
+const checkboxDelegate = document.getElementsByClassName("store-container")
 
-
-// Create hover event for cart
+checkboxDelegate.addEventListener("click", )
 
