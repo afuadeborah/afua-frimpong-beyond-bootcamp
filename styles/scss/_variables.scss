@@ -6,6 +6,14 @@ $header-font: 'Poppins', sans-serif;
     font-size: ($size/10) * 1rem;
 }
 
+@mixin parallax ($url){
+    background-image: url($url);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
 // Colours
 
 $white: #FFF;
@@ -15,15 +23,15 @@ $text: #000;
 // $accent: ;
 // $accent-button: ;
 
-// F8F8F6 warm grey
-// F7F5F6 blue grey
-// F9F9FB cool grey
-// D5DAD6 grey
+// #F8F8F6 
+// #F7F5F6 
+// #F9F9FB 
+// #D5DAD6 
 
 
-// E2ECE4 green
-// EDDDCB peach
-// C6E5D3 pastel green
+// #E2ECE4 
+// #EDDDCB 
+// #C6E5D3 
 
 
 

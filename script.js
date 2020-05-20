@@ -63,6 +63,7 @@
             const store = document.getElementById("store-container")
             let product = document.createElement('li')
             
+            
 
             // Build HTML
             product.innerHTML = `
@@ -85,6 +86,7 @@
                     <label for="${item.id}" class="add-to-cart" tabindex="0">Add to cart</label>
 
                     <input type="checkbox" id="${item.id}" class="checkbox"></input>
+
                 </div>
             `
             // Append store products to page
@@ -92,6 +94,7 @@
             
         })
         
+        addToCart()
     }
 
 // Smooth scroll 
@@ -120,22 +123,27 @@
         scrollTo(document.getElementById("store"))
     })
 
+// Add to Cart
 
 // Since the products are added dynamically we need to use event delegation to target those elements
-const checkboxDelegate = document.getElementById("store-container")
-
-// Events will be delegated to the ul "store-container"
-checkboxDelegate.addEventListener("click", (e) => {
-    // console.log(e.target)
-
-    // Make sure the target element is the one that triggers the function
-    if((e.target.nodeName == "INPUT") && e.target.checked) {
-        console.log("added to cart")
-
+const addToCart = (e) => {
+    
+    let checkboxDelegate = document.getElementById("store-container")
+    
+    // Events will be delegated to the ul "store-container"
+    checkboxDelegate.addEventListener("click", (e) => {
+        let cart = []
         
+    
+        // Make sure the target element is the one that triggers the function
+        if((e.target.nodeName == "INPUT") && e.target.checked) {
+            console.log("added to cart")
+            
 
-    } else if (e.target.checked === false) {
-        console.log("removed from cart")
-    }
-})
+        } else if (e.target.checked === false) {
+            console.log("removed from cart")
+            
+        }
+    })
+}
 

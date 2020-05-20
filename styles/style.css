@@ -270,6 +270,7 @@ nav span {
   transition: -webkit-transform .4s;
   transition: transform .4s;
   transition: transform .4s, -webkit-transform .4s;
+  position: relative;
 }
 
 .store-container li .image-container:hover {
@@ -295,7 +296,9 @@ nav span {
   letter-spacing: .1em;
 }
 
-.store-container li .product-brand {
+.store-container li .product-brand,
+.store-container li .added,
+.store-container li .removed {
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: .16em;
@@ -306,7 +309,7 @@ nav span {
 .store-container li .add-to-cart {
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   background: #FFF;
   margin-top: 0.5em;
@@ -319,7 +322,15 @@ nav span {
   border-bottom: 1px solid #000;
 }
 
-.store-container li input[type=radio] {
+.store-container li input[type=checkbox] {
+  opacity: 0;
+}
+
+.store-container li .added,
+.store-container li .removed {
+  text-align: center;
+  -webkit-transition: ease 1s;
+  transition: ease 1s;
   opacity: 0;
 }
 
