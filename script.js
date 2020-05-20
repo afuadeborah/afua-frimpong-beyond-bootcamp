@@ -122,9 +122,20 @@
 
 
 // Since the products are added dynamically we need to use event delegation to target those elements
-// Maybe move a div over to HTML
+const checkboxDelegate = document.getElementById("store-container")
 
-const checkboxDelegate = document.getElementsByClassName("store-container")
+// Events will be delegated to the ul "store-container"
+checkboxDelegate.addEventListener("click", (e) => {
+    // console.log(e.target)
 
-checkboxDelegate.addEventListener("click", )
+    // Make sure the target element is the one that triggers the function
+    if((e.target.nodeName == "INPUT") && e.target.checked) {
+        console.log("added to cart")
+
+        
+
+    } else if (e.target.checked === false) {
+        console.log("removed from cart")
+    }
+})
 
