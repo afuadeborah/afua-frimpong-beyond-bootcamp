@@ -1,9 +1,10 @@
 // Write out all your steps as you plan out this page bitch let's goo
 // Remember to remove console.logs at the end
+// Each function should do ONLY ONE THING
 
 
 // API Call: Get products to display from Makeup API
-    const makeupApi = () => {
+    const makeupPromise = () => {
 
         fetch("https://makeup-api.herokuapp.com/api/v1/products.json?product_type=eyeliner&product_category=liquid&price_greater_than=5&price_less_than=20")
 
@@ -27,7 +28,7 @@
         })
     }
 
-    makeupApi()
+    makeupPromise()
 
 
 
@@ -56,8 +57,16 @@
         
         console.log(makeupArr)
         
+        
+        displayMakeup(makeupArr)
 
-        makeupArr.forEach((item) => {
+        
+    }
+
+// Put the products on the page
+    const displayMakeup = (array) => {
+
+        array.forEach((item) => {
 
             // Use let to reassign the value of the text and content 
             const store = document.getElementById("store-container")
@@ -71,6 +80,7 @@
                 <div class="image-container">
 
                     <img src="${item.imgUrl}" alt="${item.name}">
+                    <p class="add-pdt">Added to cart</p>
 
                 </div>
 
@@ -93,9 +103,50 @@
             store.appendChild(product)
             
         })
-        
-        addToCart()
     }
+
+
+
+// Add to Cart
+    const addToCart = (e) => {
+        // Since the products are added dynamically we need to use event delegation to target those elements
+        
+        let checkboxDelegate = document.getElementById("store-container")
+        
+        // Events will be delegated to the ul "store-container"
+        checkboxDelegate.addEventListener("click", (e) => {
+            let cart = []
+            let total = 0
+            
+        
+            // Make sure the target element is the one that triggers the function
+            if((e.target.nodeName == "INPUT") && e.target.checked) {
+
+                console.log("added to cart")
+                // Push item name and price into cart
+                // Add price to total
+               
+                
+
+            } else if (e.target.checked === false) {
+                console.log("removed from cart")
+                // Remove item name and price from cart
+                // Subtract price from total
+                
+            }
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 // Smooth scroll 
     scrollTo = (element) => {
@@ -122,28 +173,3 @@
 
         scrollTo(document.getElementById("store"))
     })
-
-// Add to Cart
-
-// Since the products are added dynamically we need to use event delegation to target those elements
-const addToCart = (e) => {
-    
-    let checkboxDelegate = document.getElementById("store-container")
-    
-    // Events will be delegated to the ul "store-container"
-    checkboxDelegate.addEventListener("click", (e) => {
-        let cart = []
-        
-    
-        // Make sure the target element is the one that triggers the function
-        if((e.target.nodeName == "INPUT") && e.target.checked) {
-            console.log("added to cart")
-            
-
-        } else if (e.target.checked === false) {
-            console.log("removed from cart")
-            
-        }
-    })
-}
-

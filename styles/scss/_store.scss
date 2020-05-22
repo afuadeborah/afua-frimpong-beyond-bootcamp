@@ -16,23 +16,26 @@
             max-width: 400px;
             transition: transform .4s;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .add-pdt {
+                @include font-size(20);
+                position: absolute;
+                z-index: 2;
+                text-align: center;
+                font-family: $header-font;
+                font-weight: bold;
+                letter-spacing: .05em;
+                text-transform: uppercase;
+            }
+
 
             &:hover {
                 transform: scale(1.5);
             }
-
-            // &::after {
-            //     content: ""; // ::before and ::after both require content
-            //     position: absolute;
-            //     top: 0;
-            //     left: 0;
-            //     width: 100%;
-            //     height: 100%;
-            //     background-image: linear-gradient(120deg, #eaee44, #33d0ff);
-            //     opacity: .7;
-            //     z-index: 100;
-            // }
-            
+           
         }
 
         .product-text {
@@ -55,9 +58,7 @@
         }
         
 
-        .product-brand,
-        .added,
-        .removed {
+        .product-brand {
             @include font-size(11);
             text-transform: uppercase;
             letter-spacing: .16em;
@@ -86,16 +87,27 @@
             opacity: 0;
         }
         
-        .added,
-        .removed {
-            text-align: center;
-            transition: ease 1s;
-            opacity: 0;
+        // .added,
+        // .removed {
+        //     text-align: center;
+        //     transition: ease 1s;
+        //     opacity: 0;
             
-        }
+        // }
 
     }
 }
 
+.added::after {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(120deg, $white, #E2ECE4);
+    opacity: .8;
+    z-index: 1;
+}
 
 // Increase margin on desktop size
