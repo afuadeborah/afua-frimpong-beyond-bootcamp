@@ -18,7 +18,7 @@
             // Function manipulating data gets called here
             
             getMakeup(data)
-            console.log(data)
+            
 
         })
 
@@ -51,6 +51,7 @@
             }
 
             
+            
             return makeupArr.push(makeup)
             
         })
@@ -60,8 +61,11 @@
         
         displayMakeup(makeupArr)
 
+        addToCart()
         
     }
+
+
 
 // Put the products on the page
     const displayMakeup = (array) => {
@@ -106,7 +110,6 @@
     }
 
 
-
 // Add to Cart
     const addToCart = (e) => {
         // Since the products are added dynamically we need to use event delegation to target those elements
@@ -117,23 +120,31 @@
         checkboxDelegate.addEventListener("click", (e) => {
             let cart = []
             let total = 0
-            
+    
+            const targetId = e.target.id
+            const targetFor = e.target.previousElementSibling.attributes[0].nodeValue
+
+            // console.log(targetFor, targetId)
         
             // Make sure the target element is the one that triggers the function
-            if((e.target.nodeName == "INPUT") && e.target.checked) {
-
+            if (targetId === targetFor && e.target.nodeName === "INPUT" && e.target.checked) {
+                
+                e.stopPropagation();
+                
                 console.log("added to cart")
+                
                 // Push item name and price into cart
                 // Add price to total
-               
                 
+                
+            } else if (targetId === targetFor && e.target.checked === false) {
 
-            } else if (e.target.checked === false) {
                 console.log("removed from cart")
                 // Remove item name and price from cart
-                // Subtract price from total
                 
             }
+            
+            
         })
     }
 
