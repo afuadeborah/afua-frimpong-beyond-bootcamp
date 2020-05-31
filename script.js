@@ -1,10 +1,17 @@
-// Write out all your steps as you plan out this page bitch let's goo
 // Remember to remove console.logs at the end
 // Each function should do ONLY ONE THING
 
+// Global Variables
+const makeupApp = {}
+
+let makeupArr = []
+
+let cart = []
+
+let price = 0
 
 // API Call: Get products to display from Makeup API
-    const makeupPromise = () => {
+    makeupApp.makeupPromise = () => {
 
         fetch("https://makeup-api.herokuapp.com/api/v1/products.json?product_type=eyeliner&product_category=liquid&price_greater_than=5&price_less_than=20")
 
@@ -17,7 +24,7 @@
         .then ((data) => {
             // Function manipulating data gets called here
             
-            getMakeup(data)
+            makeupApp.getMakeup(data)
             
 
         })
@@ -28,15 +35,13 @@
         })
     }
 
-    makeupPromise()
+    makeupApp.makeupPromise()
 
 
 
 // Pull off necessary information from API
-    const getMakeup = (data) => {
-    
-        let makeupArr = []
-        
+    makeupApp.getMakeup = (data) => {
+     
         data.map((item) => {
 
             // Not all the prices have 2 decimal points so we 
@@ -59,16 +64,18 @@
         console.log(makeupArr)
         
         
-        displayMakeup(makeupArr)
+        makeupApp.displayMakeup(makeupArr)
 
-        addToCart()
+        makeupApp.addToCart()
+
+        
         
     }
 
 
 
 // Put the products on the page
-    const displayMakeup = (array) => {
+    makeupApp.displayMakeup = (array) => {
 
         array.forEach((item) => {
 
@@ -84,7 +91,7 @@
                 <div class="image-container">
 
                     <img src="${item.imgUrl}" alt="${item.name}">
-                    <p class="add-pdt">Added to cart</p>
+                   
 
                 </div>
 
@@ -110,21 +117,22 @@
     }
 
 
+
+
 // Add to Cart
-    const addToCart = (e) => {
+    makeupApp.addToCart = (e) => {
         // Since the products are added dynamically we need to use event delegation to target those elements
         
         let checkboxDelegate = document.getElementById("store-container")
         
         // Events will be delegated to the ul "store-container"
         checkboxDelegate.addEventListener("click", (e) => {
-            let cart = []
-            let total = 0
-    
+         
             const targetId = e.target.id
             const targetFor = e.target.previousElementSibling.attributes[0].nodeValue
 
-            // console.log(targetFor, targetId)
+            
+
         
             // Make sure the target element is the one that triggers the function
             if (targetId === targetFor && e.target.nodeName === "INPUT" && e.target.checked) {
@@ -134,6 +142,7 @@
                 console.log("added to cart")
                 
                 // Push item name and price into cart
+                makeupApp.cartPush(targetId)
                 // Add price to total
                 
                 
@@ -141,6 +150,7 @@
 
                 console.log("removed from cart")
                 // Remove item name and price from cart
+                makeupApp.removeItem(targetId)
                 
             }
             
@@ -149,8 +159,22 @@
     }
 
 
+// Push products to cart
+    makeupApp.cartPush = (item) => {
 
+        cart.push(item)
 
+        console.log(cart)
+    }
+
+// Remove from cart
+    makeupApp.removeItem = (item) => {
+        cart.shift(item)
+
+        console.log(cart)
+    }
+
+    console.log(makeupArr)
 
 
 
@@ -160,7 +184,7 @@
 
 
 // Smooth scroll 
-    scrollTo = (element) => {
+    makeupApp.scrollTo = (element) => {
         window.scroll({
         behavior: 'smooth',
         duration: 'slow',
@@ -184,3 +208,5 @@
 
         scrollTo(document.getElementById("store"))
     })
+
+    //  <p class="add-pdt">Added to cart</p>
