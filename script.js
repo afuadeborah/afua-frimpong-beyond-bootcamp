@@ -4,11 +4,12 @@
 // Global Variables
 const makeupApp = {}
 
-let makeupArr = []
+    makeupApp.makeupArr = []
 
-let cart = []
+    makeupApp.cart = []
 
-let price = 0
+    makeupApp.price = 0
+
 
 // API Call: Get products to display from Makeup API
     makeupApp.makeupPromise = () => {
@@ -57,14 +58,14 @@ let price = 0
 
             
             
-            return makeupArr.push(makeup)
+            return makeupApp.makeupArr.push(makeup)
             
         })
         
-        console.log(makeupArr)
+        console.log(makeupApp.makeupArr)
         
         
-        makeupApp.displayMakeup(makeupArr)
+        makeupApp.displayMakeup(makeupApp.makeupArr)
 
         makeupApp.addToCart()
 
@@ -119,30 +120,36 @@ let price = 0
 
 
 
+
 // Add to Cart
     makeupApp.addToCart = (e) => {
         // Since the products are added dynamically we need to use event delegation to target those elements
+        console.log(makeupApp.makeupArr)
         
         let checkboxDelegate = document.getElementById("store-container")
-        
+
         // Events will be delegated to the ul "store-container"
         checkboxDelegate.addEventListener("click", (e) => {
          
             const targetId = e.target.id
             const targetFor = e.target.previousElementSibling.attributes[0].nodeValue
 
-            
-
-        
             // Make sure the target element is the one that triggers the function
             if (targetId === targetFor && e.target.nodeName === "INPUT" && e.target.checked) {
                 
                 e.stopPropagation();
                 
-                console.log("added to cart")
                 
                 // Push item name and price into cart
-                makeupApp.cartPush(targetId)
+                makeupApp.makeupArr.forEach((name)=>{
+
+                    if (targetId == name.id){
+
+                        console.log("added to cart")
+
+                        makeupApp.cartPush(name.name, name.price)
+                    }
+                })
                 // Add price to total
                 
                 
@@ -153,28 +160,27 @@ let price = 0
                 makeupApp.removeItem(targetId)
                 
             }
-            
+
             
         })
     }
 
 
 // Push products to cart
-    makeupApp.cartPush = (item) => {
+    makeupApp.cartPush = (item, price) => {
 
-        cart.push(item)
+        makeupApp.cart.push(item, price)
 
-        console.log(cart)
+        console.log(makeupApp.cart)
     }
 
 // Remove from cart
     makeupApp.removeItem = (item) => {
-        cart.shift(item)
+        makeupApp.cart.shift(item)
 
-        console.log(cart)
+        console.log(makeupApp.cart)
     }
 
-    console.log(makeupArr)
 
 
 
