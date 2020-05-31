@@ -27,7 +27,6 @@ const makeupApp = {}
             
             makeupApp.getMakeup(data)
             
-
         })
 
         // Error handling
@@ -46,7 +45,7 @@ const makeupApp = {}
         data.map((item) => {
 
             // Not all the prices have 2 decimal points so we 
-            let decimalPrice = parseInt(item.price).toFixed(2)
+            let decimalPrice = parseFloat(item.price)
             
             const makeup = {
                 "name": item.name,
@@ -55,22 +54,19 @@ const makeupApp = {}
                 "imgUrl": item.image_link,
                 "id": item.id
             }
-
-            
-            
+    
             return makeupApp.makeupArr.push(makeup)
             
         })
         
         console.log(makeupApp.makeupArr)
+
         
         
         makeupApp.displayMakeup(makeupApp.makeupArr)
 
         makeupApp.addToCart()
-
-        
-        
+    
     }
 
 
@@ -124,7 +120,6 @@ const makeupApp = {}
 // Add to Cart
     makeupApp.addToCart = (e) => {
         // Since the products are added dynamically we need to use event delegation to target those elements
-        console.log(makeupApp.makeupArr)
         
         let checkboxDelegate = document.getElementById("store-container")
 
@@ -132,10 +127,9 @@ const makeupApp = {}
         checkboxDelegate.addEventListener("click", (e) => {
          
             const targetId = e.target.id
-            const targetFor = e.target.previousElementSibling.attributes[0].nodeValue
-
+            
             // Make sure the target element is the one that triggers the function
-            if (targetId === targetFor && e.target.nodeName === "INPUT" && e.target.checked) {
+            if (e.target.nodeName === "INPUT" && e.target.checked) {
                 
                 e.stopPropagation();
                 
@@ -148,20 +142,28 @@ const makeupApp = {}
                         console.log("added to cart")
 
                         makeupApp.cartPush(name.name, name.price)
+
+                        
                     }
                 })
-                // Add price to total
                 
                 
-            } else if (targetId === targetFor && e.target.checked === false) {
+            } else if (e.target.checked === false) {
+                e.stopPropagation();
 
-                console.log("removed from cart")
                 // Remove item name and price from cart
-                makeupApp.removeItem(targetId)
+                makeupApp.makeupArr.forEach((name)=>{
+                    
+                    if (targetId == name.id){
+                        
+                        console.log("removed from cart")
+
+                        makeupApp.removeItem(name.name, name.price)
+                    }
+                })
                 
             }
-
-            
+   
         })
     }
 
@@ -171,12 +173,20 @@ const makeupApp = {}
 
         makeupApp.cart.push(item, price)
 
-        console.log(makeupApp.cart)
+        // Add price to total
+        makeupApp.price = makeupApp.price + price
+        
+
+        console.log(makeupApp.cart, makeupApp.price)
+        
     }
 
+
 // Remove from cart
-    makeupApp.removeItem = (item) => {
+    makeupApp.removeItem = (item, price) => {
+
         makeupApp.cart.shift(item)
+        makeupApp.cart.shift(price)
 
         console.log(makeupApp.cart)
     }
@@ -215,4 +225,3 @@ const makeupApp = {}
         scrollTo(document.getElementById("store"))
     })
 
-    //  <p class="add-pdt">Added to cart</p>
