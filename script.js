@@ -1,6 +1,3 @@
-// Remember to remove console.logs at the end
-// Each function should do ONLY ONE THING
-
 // Global Variables
 const makeupApp = {}
 
@@ -8,7 +5,7 @@ const makeupApp = {}
 
     makeupApp.cart = []
 
-    makeupApp.price = 0
+    makeupApp.price = []
 
 
 // API Call: Get products to display from Makeup API
@@ -80,7 +77,7 @@ const makeupApp = {}
             const store = document.getElementById("store-container")
             let product = document.createElement('li')
             
-            
+            const price = item.price.toFixed(2)
 
             // Build HTML
             product.innerHTML = `
@@ -97,7 +94,7 @@ const makeupApp = {}
                         <a>${item.name}</a>
                     </h3>
 
-                    <p class="product-price">${item.price}</p>
+                    <p class="product-price">${price}</p>
 
                     <p class="product-brand">${item.brand}</p>
 
@@ -168,32 +165,59 @@ const makeupApp = {}
     }
 
 
+
 // Push products to cart
     makeupApp.cartPush = (item, price) => {
 
-        makeupApp.cart.push(item, price)
+        makeupApp.cart.push(item)
+        makeupApp.price.push(price)
 
         // Add price to total
-        makeupApp.price = makeupApp.price + price
-        
-
-        console.log(makeupApp.cart, makeupApp.price)
-        
+        makeupApp.totalPrice(price)
+   
     }
+   
+
 
 
 // Remove from cart
     makeupApp.removeItem = (item, price) => {
 
         makeupApp.cart.shift(item)
-        makeupApp.cart.shift(price)
+        makeupApp.price.shift(price)
 
-        console.log(makeupApp.cart)
+        makeupApp.subtractPrice(price)
+
     }
 
 
 
+// Tally total of cart
+    makeupApp.totalPrice = () => {
 
+        // When each item is added to the cart, add up the total cost of the cart
+        return makeupApp.price.reduce((acc, currentPrice) => {
+
+            return acc + currentPrice
+
+        }, 0)
+    }
+
+
+
+// Subtract items removed from cart
+    makeupApp.subtractPrice = () => {
+
+        // When each item is removed from the cart, add up the total cost of the cart
+        return makeupApp.price.reduce((acc, currentPrice) => {
+
+            // Multiply by -1 to prevent a negative price when subtracting prices from cart
+            return ((acc - currentPrice) * -1)
+
+        }, 0)
+
+    }
+   
 
 
 
