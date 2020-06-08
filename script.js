@@ -7,6 +7,17 @@ const makeupApp = {}
 
     makeupApp.price = []
 
+// Elements
+    makeupApp.overlay = document.getElementById("cart-overlay")
+
+    makeupApp.cart =  document.getElementById("cart")
+    
+    makeupApp.cartBtn = document.getElementById("view-cart")
+
+    makeupApp.closeBtn = document.getElementById("close-cart")
+
+
+
 
 // API Call: Get products to display from Makeup API
     makeupApp.makeupPromise = () => {
@@ -218,10 +229,7 @@ const makeupApp = {}
 
     }
    
-
-
-
-
+    
 
 // Smooth scroll 
     makeupApp.scrollTo = (element) => {
@@ -249,3 +257,18 @@ const makeupApp = {}
         scrollTo(document.getElementById("store"))
     })
 
+
+
+
+// Open Cart
+    makeupApp.openCart = () => {
+        
+        makeupApp.cart.classList.toggle("cart-open")
+        makeupApp.overlay.classList.toggle("overlay-open")
+
+    }
+
+makeupApp.cartBtn.addEventListener('click', makeupApp.openCart)
+
+makeupApp.closeBtn.addEventListener('click', makeupApp.openCart)
+    

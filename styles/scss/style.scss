@@ -1,6 +1,7 @@
 @import 'setup';
 @import 'variables';
 @import 'navigation';
+@import 'cart';
 @import 'main';
 @import 'store';
 @import 'footer';
@@ -19,6 +20,7 @@ body {
     line-height: 1.6;
     font-size: 1.6rem;
     font-family: $body-font;
+
 }
   
 img {
@@ -64,6 +66,7 @@ a {
 // Typography
 h1,
 h2,
+h3,
 nav a,
 nav p,
 footer a {
@@ -72,7 +75,8 @@ footer a {
 }
 
 h1,
-h2 {
+h2,
+h3 {
     letter-spacing: 3px;
 
 }
@@ -82,4 +86,17 @@ h2 {
     height: 10vh;
 }
 
+button {
+    background-color: $text;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    padding: 0.8em;
+
+    &:hover {
+        border: 1px solid $text;
+        color: $text;
+        background-color: $white;
+    }
+}
 // Media Queries

@@ -26,7 +26,11 @@ nav {
     span {
         @include font-size(27);
         cursor: pointer;
+        padding: 0.5em 0.65em 0.5em 0.5em;  
+    }
 
-        
+    h3 {
+        color: $white;
     }
 }
+
