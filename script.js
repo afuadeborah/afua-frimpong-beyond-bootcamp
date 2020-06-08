@@ -10,7 +10,7 @@ const makeupApp = {}
 // Elements
     makeupApp.overlay = document.getElementById("cart-overlay")
 
-    makeupApp.cart =  document.getElementById("cart")
+    makeupApp.cartIcon =  document.getElementById("cart")
     
     makeupApp.cartBtn = document.getElementById("view-cart")
 
@@ -263,7 +263,7 @@ const makeupApp = {}
 // Open Cart
     makeupApp.openCart = () => {
         
-        makeupApp.cart.classList.toggle("cart-open")
+        makeupApp.cartIcon.classList.toggle("cart-open")
         makeupApp.overlay.classList.toggle("overlay-open")
 
     }

@@ -276,7 +276,7 @@ nav h3 {
 }
 
 .cart .cart-container li {
-  padding: 2em;
+  padding: 1em 2em;
   border-bottom: 0.5px solid #C4C4C4;
   display: -webkit-box;
   display: -ms-flexbox;
