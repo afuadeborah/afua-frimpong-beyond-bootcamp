@@ -66,11 +66,7 @@ const makeupApp = {}
             return makeupApp.makeupArr.push(makeup)
             
         })
-        
-        console.log(makeupApp.makeupArr)
-
-        
-        
+               
         makeupApp.displayMakeup(makeupApp.makeupArr)
 
         makeupApp.addToCart()
@@ -94,10 +90,7 @@ const makeupApp = {}
             product.innerHTML = `
 
                 <div class="image-container">
-
                     <img src="${item.imgUrl}" alt="${item.name}">
-                   
-
                 </div>
 
                 <div class="product-text">
@@ -112,7 +105,6 @@ const makeupApp = {}
                     <label for="${item.id}" class="add-to-cart" tabindex="0">Add to cart</label>
 
                     <input type="checkbox" id="${item.id}" class="checkbox"></input>
-
                 </div>
             `
             // Append store products to page
@@ -120,7 +112,6 @@ const makeupApp = {}
             
         })
     }
-
 
 
 
@@ -147,11 +138,8 @@ const makeupApp = {}
 
                     if (targetId == name.id){
 
-                        console.log("added to cart")
-
                         makeupApp.cartPush(name.name, name.price)
-
-                        
+ 
                     }
                 })
                 
@@ -164,8 +152,6 @@ const makeupApp = {}
                     
                     if (targetId == name.id){
                         
-                        console.log("removed from cart")
-
                         makeupApp.removeItem(name.name, name.price)
                     }
                 })
@@ -183,11 +169,36 @@ const makeupApp = {}
         makeupApp.cart.push(item)
         makeupApp.price.push(price)
 
+        // Push items to cart panel
+        makeupApp.showInCart(item, price)
+ 
         // Add price to total
         makeupApp.totalPrice(price)
-   
+          
     }
-   
+
+    // Display Added Items to Cart
+    makeupApp.showInCart = (item, price) => {
+        // Use let to reassign the value of the text and content
+        const slideCart = document.getElementById("cart-list")
+        let addedItem = document.createElement("li")
+
+        const cartPrice = price.toFixed(2)
+
+        // Build HTML
+        addedItem.innerHTML = `
+ 
+            <div class="cart-price">
+                <h4>${item}</h4>
+                <span>${cartPrice}</span>
+            </div>
+
+        `
+        
+        slideCart.appendChild(addedItem)
+
+    }
+
 
 
 
@@ -208,10 +219,12 @@ const makeupApp = {}
 
         // When each item is added to the cart, add up the total cost of the cart
         return makeupApp.price.reduce((acc, currentPrice) => {
-
-            return acc + currentPrice
+            
+            return  acc + currentPrice
 
         }, 0)
+
+
     }
 
 
@@ -272,3 +285,6 @@ makeupApp.cartBtn.addEventListener('click', makeupApp.openCart)
 
 makeupApp.closeBtn.addEventListener('click', makeupApp.openCart)
     
+{/* <div class="cart-image">
+<img src="${item.imgUrl}" alt="${item.name}"/>
+</div> */}

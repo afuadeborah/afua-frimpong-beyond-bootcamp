@@ -231,7 +231,7 @@ nav h3 {
 
 .cart {
   z-index: -10;
-  width: 40vw;
+  width: 50vw;
   height: 100%;
   background: #FFF;
   padding: 2rem;
@@ -287,6 +287,22 @@ nav h3 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.cart .cart-container li .cart-price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cart .cart-container li h4 {
+  margin-right: 2em;
 }
 
 .cart button {
@@ -558,4 +574,26 @@ button:hover {
   border: 1px solid #000;
   color: #000;
   background-color: #FFF;
+}
+
+@media (max-width: 780px) {
+  .cart {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .nav-menu {
+    display: none;
+  }
+  .parallax .info {
+    top: 20%;
+  }
+  .parallax .info span {
+    display: none;
+  }
+  .store-container li {
+    -ms-flex-preferred-size: 70%;
+        flex-basis: 70%;
+  }
 }

@@ -99,4 +99,38 @@ button {
         background-color: $white;
     }
 }
+
+
+
+
 // Media Queries
+@include mobile-tablet {
+
+    .cart {
+        width: 80vw;
+    }
+}
+
+@include mobile {
+
+    .nav-menu {
+        display: none;
+    }
+
+    .parallax {
+        .info {
+            top: 20%;
+
+            span {
+                display: none;
+            }
+        }
+    }
+
+    .store-container {
+
+        li {
+            flex-basis: 70%;
+        }
+    }
+}
