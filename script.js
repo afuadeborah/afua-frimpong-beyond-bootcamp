@@ -285,6 +285,4 @@ makeupApp.cartBtn.addEventListener('click', makeupApp.openCart)
 
 makeupApp.closeBtn.addEventListener('click', makeupApp.openCart)
     
-{/* <div class="cart-image">
-<img src="${item.imgUrl}" alt="${item.name}"/>
-</div> */}
+
